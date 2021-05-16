@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AgenciaConfig(AppConfig):
+class SpacemanagerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'agencia'
+    name = 'spaceManager'

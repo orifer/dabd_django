@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'spaceManager.apps.SpacemanagerConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,15 @@ WSGI_APPLICATION = 'SpaceOdyssey.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'est_f3320496',
+        'USER': 'est_f3320496',
+        'PASSWORD': 'dB.f3320496',
+        'HOST': 'ubiwan.epsevg.upc.edu',
+        'PORT': '5432',
+		'OPTIONS': {
+            'options': '-c search_path=practica'
+        }
     }
 }
 
