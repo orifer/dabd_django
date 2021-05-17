@@ -14,11 +14,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'spaceManager/favicon.ico' %}"/>
 
-    <style>
-        body {
-            background-color: #F3F3F3;
-        }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'spaceManager/style.css' %}">
 
 </head>
 <body>
@@ -122,10 +119,8 @@
 </nav>
 
 <!-- Contingut -->
-<div class="container pt-5 pb-5">
-    {% block content %}
-    {% endblock %}
-</div>
+{% block content %}
+{% endblock %}
 
 <!-- Footer -->
 <footer class="bg-dark text-center text-lg-start fixed-bottom">
