@@ -1,7 +1,7 @@
 {% extends 'spaceManager/base.html' %}
 
 {% block content %}
-
+{% load mathfilters %}
 <title>Space Manager - Agencies</title>
 
 <div class="container">
@@ -19,7 +19,7 @@
 
                 {% for agencia in pagina.object_list %}
                 <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
+                    <th scope="row">{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
                     <td>{{ agencia.nom }}</td>
                     <td>
                         <a class="btn btn-primary" href="#">
