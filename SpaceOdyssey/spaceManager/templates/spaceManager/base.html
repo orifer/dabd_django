@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<!-- Header -->
+<!-- Header/Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
         <a class="navbar-brand mt-3" style="margin-right: 5em" href="/">Space Manager</a>
@@ -35,7 +35,7 @@
             <ul class="navbar-nav mx-auto">
 
                 <li class="nav-item mx-3">
-                    <a href="/" class="nav-link text-secondary">
+                    <a href="/" class="nav-link {% if nbar == 'inici' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-home fa-2x"></i>
                             <div>Inici</div>
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/agencies" class="nav-link text-secondary">
+                    <a href="/agencies" class="nav-link {% if nbar == 'agencies' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-building fa-2x"></i>
                             <div>Agencies</div>
@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/missions" class="nav-link text-secondary">
+                    <a href="/missions"  class="nav-link {% if nbar == 'missions' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-book fa-2x"></i>
                             <div>Missions</div>
@@ -62,7 +62,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/naus" class="nav-link text-secondary">
+                    <a href="/naus" class="nav-link {% if nbar == 'naus' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-rocket fa-2x"></i>
                             <div>Naus</div>
@@ -71,7 +71,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/plataformes" class="nav-link text-secondary">
+                    <a href="/plataformes" class="nav-link {% if nbar == 'plataformes' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-pallet fa-2x"></i>
                             <div>Plataformes</div>
@@ -80,7 +80,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/astronautes" class="nav-link text-secondary">
+                    <a href="/astronautes" class="nav-link {% if nbar == 'astronautes' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-user-astronaut fa-2x"></i>
                             <div>Astronautes</div>
@@ -89,7 +89,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/llancaments" class="nav-link text-secondary">
+                    <a href="/llancaments" class="nav-link {% if nbar == 'llancaments' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-plane-departure fa-2x"></i>
                             <div>Llançaments</div>
@@ -98,7 +98,7 @@
                 </li>
 
                 <li class="nav-item dropdown mx-3">
-                     <a href="/plataformes" class="nav-link dropdown-toggle text-secondary" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <a href="/plataformes" class="nav-link dropdown-toggle {% if nbar == 'llancaments' %} active {% else %} text-secondary {% endif %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="text-center">
                             <i class="fas fa-cog fa-2x"></i>
                             <div>Opcions</div>

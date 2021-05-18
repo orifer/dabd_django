@@ -5,7 +5,8 @@ from .models import Agencia
 from .forms import AgenciaForm
 
 def index(request):
-    return render(request, 'spaceManager/index.html')
+    context = {'nbar': 'inici'}
+    return render(request, 'spaceManager/index.html', context)
 
 
 # |============|
@@ -22,8 +23,10 @@ def agencies(request):
     num_pagina = request.GET.get('page')
     pagina = agencia_paginator.get_page(num_pagina)
 
-    # context = {'agencies': agencies}
-    context = {'pagina': pagina}
+    context = {
+        'pagina': pagina,
+        'nbar': 'agencies'
+    }
     return render(request, 'spaceManager/agencies.html', context)
 
 # Obtenir una agencia
