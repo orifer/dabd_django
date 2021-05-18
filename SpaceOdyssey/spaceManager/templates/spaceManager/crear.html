@@ -2,15 +2,17 @@
 
 {% block content %}
 
-<title>Space Manager - Confirm</title>
+<title>Space Manager - Agencia</title>
 
 <div class="container">
 
-    <h2>Segur que vols eliminar a "{{ agencia.nom }}"?</h2>
+    <h2>Crear/modificar agencia</h2>
 
-    <form action="{% url 'esborrar_agencia' agencia.id %}" method="POST">
+    <form action="" method="POST">
 
         {% csrf_token %}
+        {{ form }}
+
         <a href="{% url 'agencies' %}">Cancela</a>
         <input type="submit" name="Confirmar">
     </form>

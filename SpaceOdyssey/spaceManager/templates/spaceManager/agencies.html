@@ -6,34 +6,43 @@
 
 <div class="container">
 
+    <div class="d-grid gap-2 my-3">
+        <a class="btn btn-primary" type="button" href="{% url 'crear_agencia' %}">
+            <i class="fas fa-plus me-2"></i>Nova agencia
+        </a>
+    </div>
+
     {% if pagina.object_list %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Accions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                {% for agencia in pagina.object_list %}
-                <tr>
-                    <th scope="row">{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
-                    <td>{{ agencia.nom }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="#">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a class="btn btn-danger" href="{% url 'esborrar_agencia' agencia.nom %}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th style="text-align: right">Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                    {% for agencia in pagina.object_list %}
+                    <tr>
+                        <th>{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
+                        <td>{{ agencia.nom }}</td>
+                        <td style="text-align: right">
+                            <a class="btn btn-primary" href="{% url 'modifica_agencia' agencia.id %}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger" href="{% url 'esborrar_agencia' agencia.id %}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
 
 
         <!-- Paginator -->
