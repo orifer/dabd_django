@@ -9,7 +9,6 @@
     <h2>Segur que vols eliminar a "{{ agencia.nom }}"?</h2>
 
     <form action="{% url 'esborrar_agencia' agencia.id %}" method="POST">
-
         {% csrf_token %}
         <a href="{% url 'agencies' %}">Cancela</a>
         <input type="submit" name="Confirmar">

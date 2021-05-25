@@ -7,9 +7,9 @@
 <div class="container">
 
     <div class="d-grid gap-2 my-3">
-        <a class="btn btn-primary" type="button" href="{% url 'crear_agencia' %}">
+        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio('{% url 'crear_agencia' %}')">
             <i class="fas fa-plus me-2"></i>Nova agencia
-        </a>
+        </button>
     </div>
 
     {% if pagina.object_list %}
@@ -81,4 +81,19 @@
 
 </div>
 
-{% endblock %}
+<div class="modal fade" id="modalCreacio" role="dialog">
+
+</div>
+
+{% endblock content %}
+
+{% block extrajs %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function obrir_modal_creacio(url) {
+        $('#modalCreacio').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+</script>
+{% endblock extrajs %}

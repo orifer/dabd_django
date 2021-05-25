@@ -18,6 +18,9 @@ def agencies(request):
     # Obtenir agencies de la base de dades
     agencies = Agencia.objects.all()
 
+    if request.method == "POST":
+        print("agencies")
+
     # Crear paginacio per mostrar comodament
     agencia_paginator = Paginator(agencies, 12)
     num_pagina = request.GET.get('page')
@@ -40,6 +43,7 @@ def agencia(request, id):
 
 # Crear una agencia
 def crearAgencia(request):
+    print("crearAgencia")
 
     form = AgenciaForm()
 
@@ -50,12 +54,13 @@ def crearAgencia(request):
             return redirect('/agencies')
 
     context = {'form': form}
-    return render(request, 'spaceManager/crear.html', context)
+    return render(request, 'spaceManager/modal.html', context)
+    # return render(request, 'spaceManager/crear.html', context)
 
 
 # Actualitza una agencia
 def modificaAgencia(request, id):
-
+    print("modificaAgencia")
     agencia = Agencia.objects.get(pk=id)
     form = AgenciaForm(instance=agencia)
 
@@ -71,6 +76,7 @@ def modificaAgencia(request, id):
 
 # Esborrar una agencia
 def esborrarAgencia(request, id):
+    print("esborrarAgencia")
     agencia = Agencia.objects.get(pk=id)
     if request.method == "POST":
         agencia.delete()
