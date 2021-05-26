@@ -59,39 +59,6 @@ def agencia(request, id):
     return render(request, 'spaceManager/agencia/detall_agencia.html', {'agencia_id': id})
 
 
-# Crear una agencia
-def crearAgencia(request):
-    print("crearAgencia")
-
-    form = AgenciaForm()
-
-    if request.method == "POST":
-        form = AgenciaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/agencies')
-
-    context = {'form': form}
-    return render(request, 'spaceManager/agencia/editar_agencia.html', context)
-    # return render(request, 'spaceManager/crear.html', context)
-
-
-# Actualitza una agencia
-def modificaAgencia(request, id):
-    print("modificaAgencia")
-    agencia = Agencia.objects.get(pk=id)
-    form = AgenciaForm(instance=agencia)
-
-    if request.method == "POST":
-        form = AgenciaForm(request.POST, instance=agencia)
-        if form.is_valid():
-            form.save()
-            return redirect('/agencies')
-
-    context = {'form': form}
-    return render(request, 'spaceManager/agencia/crear.html', context)
-
-
 # Esborrar una agencia
 def esborrarAgencia(request, id):
     print("esborrarAgencia")
