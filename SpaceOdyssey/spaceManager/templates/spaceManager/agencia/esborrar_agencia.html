@@ -1,19 +1,22 @@
-{% extends 'spaceManager/index.html' %}
+<!-- Modal -->
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
 
-{% block content %}
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Esborrar agencia {{ object }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-<title>Space Manager - Confirm</title>
+        <form action="{% url 'spaceManager:esborrar_agencia' object.id %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+                {{ form.as_p }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+            </div>
+        </form>
 
-<div class="container">
-
-    <h2>Segur que vols eliminar a "{{ agencia.nom }}"?</h2>
-
-    <form action="{% url 'esborrar_agencia' agencia.id %}" method="POST">
-        {% csrf_token %}
-        <a href="{% url 'agencies' %}">Cancela</a>
-        <input type="submit" name="Confirmar">
-    </form>
-
+    </div>
 </div>
-
-{% endblock %}
