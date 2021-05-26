@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import View, UpdateView
+from django.views.generic import View, UpdateView, CreateView
 
 from .models import Agencia
 from .forms import AgenciaForm
@@ -36,10 +36,17 @@ class LlistarAgencies(View):
         return render(request, self.template_name, self.get_context_data())
 
 
+class CrearAgencies(CreateView):
+    model = Agencia
+    form_class = AgenciaForm
+    template_name = 'spaceManager/agencia/crear_agencia.html'
+    success_url = reverse_lazy('spaceManager:llistar_agencies')
+
+
 class ActualitzarAgencies(UpdateView):
     model = Agencia
     form_class = AgenciaForm
-    template_name = 'spaceManager/agencia/new_edit_agencia.html'
+    template_name = 'spaceManager/agencia/editar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
 
 
@@ -65,7 +72,7 @@ def crearAgencia(request):
             return redirect('/agencies')
 
     context = {'form': form}
-    return render(request, 'spaceManager/agencia/new_edit_agencia.html', context)
+    return render(request, 'spaceManager/agencia/editar_agencia.html', context)
     # return render(request, 'spaceManager/crear.html', context)
 
 

@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="d-grid gap-2 my-3">
-        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio_edicio('{% url 'spaceManager:crear_agencia' %}')">
+        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio('{% url 'spaceManager:crear_agencia' %}')">
             <i class="fas fa-plus me-2"></i>Nova agencia
         </button>
     </div>
@@ -30,7 +30,7 @@
                         <th>{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
                         <td>{{ agencia.nom }}</td>
                         <td style="text-align: right">
-                            <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio_edicio('{% url 'spaceManager:editar_agencia' agencia.id %}')">
+                            <button class="btn btn-primary" type="button" onclick="obrir_modal_edicio('{% url 'spaceManager:editar_agencia' agencia.id %}')">
                                 <i class="fas fa-edit"></i></i>
                             </button>
 
@@ -82,17 +82,23 @@
 
 </div>
 
-<div class="modal fade" id="modalCreacio" role="dialog">
-
-</div>
+<div class="modal fade" id="modalCreacio" role="dialog"></div>
+<div class="modal fade" id="modalEdicio" role="dialog"></div>
 
 {% endblock content %}
 
 {% block extrajs %}
 <script type="text/javascript">
     var $ = jQuery.noConflict();
-    function obrir_modal_creacio_edicio(url) {
+
+    function obrir_modal_creacio(url) {
         $('#modalCreacio').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+
+    function obrir_modal_edicio(url) {
+        $('#modalEdicio').load(url, function(){
            $(this).modal('show');
         });
     }
