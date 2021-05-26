@@ -5,3 +5,7 @@ body {
 .bckgrnd1 {
   background: url("/static/spaceManager/img/img1.jpg") 55% 50% no-repeat;
 }
+
+form {
+    margin: 0;
+}

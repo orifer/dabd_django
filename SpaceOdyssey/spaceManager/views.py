@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404
+from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import View, UpdateView, CreateView, DeleteView
+from django.views.generic import View, UpdateView, CreateView, DeleteView, DetailView, FormView
 
 from .models import Agencia
-from .forms import AgenciaForm
+from .forms import AgenciaForm, AgenciaFormLectura
 
 
 class Inici(View):
@@ -36,6 +35,12 @@ class LlistarAgencies(View):
         return render(request, self.template_name, self.get_context_data())
 
 
+class DetallAgencia(UpdateView):
+    model = Agencia
+    form_class = AgenciaFormLectura
+    template_name = 'spaceManager/agencia/detall_agencia.html'
+
+
 class CrearAgencies(CreateView):
     model = Agencia
     form_class = AgenciaForm
@@ -49,28 +54,8 @@ class ActualitzarAgencies(UpdateView):
     template_name = 'spaceManager/agencia/editar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
 
+
 class EsborrarAgencies(DeleteView):
     model = Agencia
-    form_class = AgenciaForm
     template_name = 'spaceManager/agencia/esborrar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
-
-# Obtenir una agencia
-def agencia(request, id):
-    try:
-        agencia = Agencia.objects.get(pk=id)
-    except Agencia.DoesNotExist:
-        raise Http404("Aquesta agencia no existeix")
-    return render(request, 'spaceManager/agencia/detall_agencia.html', {'agencia_id': id})
-
-
-# Esborrar una agencia
-def esborrarAgencia(request, id):
-    print("esborrarAgencia")
-    agencia = Agencia.objects.get(pk=id)
-    if request.method == "POST":
-        agencia.delete()
-        return redirect('/agencies')
-
-    context = {'agencia': agencia}
-    return render(request, 'spaceManager/agencia/esborrar_agencia.html', context)

@@ -30,12 +30,16 @@
                         <th>{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
                         <td>{{ agencia.nom }}</td>
                         <td style="text-align: right">
+                            <button class="btn btn-primary" type="button" onclick="obrir_modal_detall('{% url 'spaceManager:detall_agencia' agencia.id %}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+
                             <button class="btn btn-primary" type="button" onclick="obrir_modal_edicio('{% url 'spaceManager:editar_agencia' agencia.id %}')">
-                                <i class="fas fa-edit"></i></i>
+                                <i class="fas fa-edit"></i>
                             </button>
 
                             <button class="btn btn-danger" type="button" onclick="obrir_modal_eliminacio('{% url 'spaceManager:esborrar_agencia' agencia.id %}')">
-                                <i class="fas fa-trash"></i></i>
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -82,6 +86,7 @@
 
 </div>
 
+<div class="modal fade" id="modalDetall" role="dialog"></div>
 <div class="modal fade" id="modalCreacio" role="dialog"></div>
 <div class="modal fade" id="modalEdicio" role="dialog"></div>
 <div class="modal fade" id="modalEliminacio" role="dialog"></div>
@@ -91,6 +96,12 @@
 {% block extrajs %}
 <script type="text/javascript">
     var $ = jQuery.noConflict();
+
+    function obrir_modal_detall(url) {
+        $('#modalDetall').load(url, function(){
+           $(this).modal('show');
+        });
+    }
 
     function obrir_modal_creacio(url) {
         $('#modalCreacio').load(url, function(){
