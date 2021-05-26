@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/missions"  class="nav-link {% if nbar == 'missions' %} active {% else %} text-secondary {% endif %}">
+                    <a href="{% url 'spaceManager:llistar_missions' %}"  class="nav-link {% if nbar == 'missions' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-book fa-2x"></i>
                             <div>Missions</div>

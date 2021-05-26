@@ -25,3 +25,14 @@ class AgenciaFormLectura(ModelForm):
 	class Meta:
 		model = Agencia
 		fields = ['nom']
+
+
+class MissioForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['nom'].widget.attrs['class'] = 'form-control'
+		self.fields['nom'].label = 'Nom'
+
+	class Meta:
+		model = Agencia
+		fields = ['nom']

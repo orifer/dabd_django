@@ -1,0 +1,124 @@
+{% extends 'spaceManager/index.html' %}
+
+{% block content %}
+{% load mathfilters %}
+<title>Space Manager - Missions</title>
+
+<div class="container">
+
+    <div class="d-grid gap-2 my-3">
+        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio('{% url 'spaceManager:crear_missio' %}')">
+            <i class="fas fa-plus me-2"></i>Nova missio
+        </button>
+    </div>
+
+    {% if pagina.object_list %}
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th style="text-align: right">Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for missio in pagina.object_list %}
+                    <tr>
+                        <th>{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
+                        <td>{{ missio.nom }}</td>
+                        <td style="text-align: right">
+                            <button class="btn btn-primary" type="button" onclick="obrir_modal_detall('{% url 'spaceManager:detall_missio' missio.id %}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+
+                            <button class="btn btn-primary" type="button" onclick="obrir_modal_edicio('{% url 'spaceManager:editar_missio' missio.id %}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger" type="button" onclick="obrir_modal_eliminacio('{% url 'spaceManager:esborrar_missio' missio.id %}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Paginator -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+
+                <!-- Anterior -->
+                {% if pagina.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ pagina.previous_page_number }}">Anterior</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link">Anterior</a></li>
+                {% endif %}
+
+                <!-- Numero de pagina -->
+                {% if pagina.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ pagina.previous_page_number }}">{{ pagina.previous_page_number }}</a></li>
+                {% endif %}
+                <li class="page-item active"><a class="page-link" href="#">{{ pagina.number }}</a></li>
+                {% if pagina.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ pagina.next_page_number }}">{{ pagina.next_page_number }}</a></li>
+                {% endif %}
+
+                <!-- Seguent -->
+                {% if pagina.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ pagina.next_page_number }}">Seguent</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link">Seguent</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+    {% else %}
+        <p>No hi han missions.</p>
+    {% endif %}
+
+</div>
+
+<div class="modal fade" id="modalDetall" role="dialog"></div>
+<div class="modal fade" id="modalCreacio" role="dialog"></div>
+<div class="modal fade" id="modalEdicio" role="dialog"></div>
+<div class="modal fade" id="modalEliminacio" role="dialog"></div>
+
+{% endblock content %}
+
+{% block extrajs %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+
+    function obrir_modal_detall(url) {
+        $('#modalDetall').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+
+    function obrir_modal_creacio(url) {
+        $('#modalCreacio').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+
+    function obrir_modal_edicio(url) {
+        $('#modalEdicio').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+
+    function obrir_modal_eliminacio(url) {
+        $('#modalEliminacio').load(url, function(){
+           $(this).modal('show');
+        });
+    }
+</script>
+{% endblock extrajs %}

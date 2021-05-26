@@ -3,9 +3,9 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import View, UpdateView, CreateView, DeleteView, DetailView, FormView
+from django.views.generic import View, UpdateView, CreateView, DeleteView
 
-from .models import Agencia
+from .models import Agencia, Missio
 from .forms import AgenciaForm, AgenciaFormLectura
 
 
@@ -61,3 +61,25 @@ class EsborrarAgencies(DeleteView):
     model = Agencia
     template_name = 'spaceManager/agencia/esborrar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
+
+
+class LlistarMissions(View):
+    model = Missio
+    template_name = 'spaceManager/missio/llistat_missions.html'
+
+    def get_queryset(self):
+        return self.model.objects.order_by('id')
+
+    def get_context_data(self, **kwargs):
+        # Paginacio
+        paginator = Paginator(self.get_queryset(), 12)
+        num_pagina = self.request.GET.get('page')
+        pagina = paginator.get_page(num_pagina)
+
+        context = {}
+        context['pagina'] = pagina
+        context['nbar'] = 'missions'
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
