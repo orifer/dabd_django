@@ -1,3 +1,5 @@
+# https://docs.djangoproject.com/en/3.2/topics/db/queries/
+
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
@@ -18,7 +20,7 @@ class LlistarAgencies(View):
     template_name = 'spaceManager/agencia/llistat_agencies.html'
 
     def get_queryset(self):
-        return self.model.objects.all()
+        return self.model.objects.order_by('id')
 
     def get_context_data(self, **kwargs):
         # Paginacio
