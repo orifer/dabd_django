@@ -1,0 +1,38 @@
+{% extends 'spaceManager/index.html' %}
+
+{% block content %}
+
+<title>Space Manager - Inici</title>
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bckgrnd1">
+    <div class="col-md-5 p-lg-5 mx-auto my-5" style="width: 100%;">
+        <h1 class="display-4 fw-normal text-light">La revolució dels programes espacials</h1>
+        <p class="lead fw-normal text-light">La millor plataforma de gestió de programes espacials, ara disponible de forma gratuïta.</p>
+        <a class="btn btn-outline-secondary text-light" href="/agencies">Comença</a>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>
+
+<div class="container-fluid">
+    <div class="row row-space">
+        <div class="col">
+            <div class="bg-dark px-3 text-center text-white overflow-hidden">
+                <div class="my-2 py-3">
+                    <h2 class="display-6">Tot en una aplicació</h2>
+                    <img src="{{STATIC_URL}}/static/spaceManager/img/dashboard.png" height="160" />
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="bg-dark px-3 text-center overflow-hidden">
+                <div class="my-2 p-3">
+                    <h2 class="text-light display-6">Aprovat per la NASA</h2>
+                    <img src="{{STATIC_URL}}/static/spaceManager/img/nasaLogo.png" height="160" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

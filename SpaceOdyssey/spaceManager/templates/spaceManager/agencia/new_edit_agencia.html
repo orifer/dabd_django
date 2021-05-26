@@ -3,18 +3,18 @@
     <div class="modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear/editar agencia</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Editar agencia {{ object }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form method="POST">
+        <form action="{% url 'spaceManager:editar_agencia' object.id %}" method="POST">
             {% csrf_token %}
             <div class="modal-body">
                 {{ form.as_p }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Confirmar</button>
             </div>
         </form>
 

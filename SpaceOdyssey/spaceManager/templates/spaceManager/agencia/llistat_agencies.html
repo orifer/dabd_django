@@ -1,4 +1,4 @@
-{% extends 'spaceManager/base.html' %}
+{% extends 'spaceManager/index.html' %}
 
 {% block content %}
 {% load mathfilters %}
@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="d-grid gap-2 my-3">
-        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio('{% url 'crear_agencia' %}')">
+        <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio_edicio('{% url 'spaceManager:crear_agencia' %}')">
             <i class="fas fa-plus me-2"></i>Nova agencia
         </button>
     </div>
@@ -30,10 +30,11 @@
                         <th>{{ forloop.counter|add:pagina.start_index|sub:1 }} </th>
                         <td>{{ agencia.nom }}</td>
                         <td style="text-align: right">
-                            <a class="btn btn-primary" href="{% url 'modifica_agencia' agencia.id %}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class="btn btn-danger" href="{% url 'esborrar_agencia' agencia.id %}">
+                            <button class="btn btn-primary" type="button" onclick="obrir_modal_creacio_edicio('{% url 'spaceManager:editar_agencia' agencia.id %}')">
+                                <i class="fas fa-edit"></i></i>
+                            </button>
+
+                            <a class="btn btn-danger" href="{% url 'spaceManager:esborrar_agencia' agencia.id %}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -90,7 +91,7 @@
 {% block extrajs %}
 <script type="text/javascript">
     var $ = jQuery.noConflict();
-    function obrir_modal_creacio(url) {
+    function obrir_modal_creacio_edicio(url) {
         $('#modalCreacio').load(url, function(){
            $(this).modal('show');
         });
