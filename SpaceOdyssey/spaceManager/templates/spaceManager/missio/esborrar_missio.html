@@ -3,15 +3,15 @@
     <div class="modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Esborrar agencia {{ object }}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Esborrar missió {{ object }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="{% url 'spaceManager:esborrar_agencia' object.id %}" method="POST">
+        <form action="{% url 'spaceManager:esborrar_missio' object.id %}" method="POST">
             {% csrf_token %}
 
             <div class="modal-body">
-                <p>Segur que vols eliminar definitivament aquesta agència?</p>
+                <p>Segur que vols eliminar definitivament aquesta missió?</p>
             </div>
 
             <div class="modal-footer">

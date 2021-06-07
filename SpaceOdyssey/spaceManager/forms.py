@@ -50,8 +50,16 @@ class MissioFormLectura(ModelForm):
 		super().__init__(*args, **kwargs)
 		self.fields['nom'].widget.attrs['class'] = 'form-control'
 		self.fields['nom'].widget.attrs['readonly'] = 'readonly'
-		self.fields['nom'].label = 'Nom'
+
+		self.fields['descripcio'].widget.attrs['class'] = 'form-control'
+		self.fields['descripcio'].widget.attrs['readonly'] = 'readonly'
+
+		self.fields['data_finalitzacio'].widget.attrs['class'] = 'form-control datepicker'
+		self.fields['data_finalitzacio'].widget.attrs['readonly'] = 'readonly'
+
+		self.fields['agencia'].widget.attrs['class'] = 'form-control'
+		self.fields['agencia'].widget.attrs['readonly'] = 'readonly'
 
 	class Meta:
 		model = Missio
-		fields = ['nom']
+		fields = ['nom', 'descripcio', 'data_finalitzacio', 'agencia']

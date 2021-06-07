@@ -89,7 +89,7 @@ class LlistarMissions(View):
 class DetallMissio(UpdateView):
     model = Missio
     form_class = MissioFormLectura
-    template_name = 'spaceManager/agencia/detall_agencia.html'
+    template_name = 'spaceManager/missio/detall_missio.html'
 
 class CrearMissio(CreateView):
     model = Missio
@@ -100,10 +100,10 @@ class CrearMissio(CreateView):
 class ActualitzarMissio(UpdateView):
     model = Missio
     form_class = MissioForm
-    template_name = 'spaceManager/agencia/editar_missio.html'
+    template_name = 'spaceManager/missio/editar_missio.html'
     success_url = reverse_lazy('spaceManager:llistar_missions')
 
 class EsborrarMissio(DeleteView):
     model = Missio
-    template_name = 'spaceManager/agencia/esborrar_missio.html'
+    template_name = 'spaceManager/missio/esborrar_missio.html'
     success_url = reverse_lazy('spaceManager:llistar_missions')
