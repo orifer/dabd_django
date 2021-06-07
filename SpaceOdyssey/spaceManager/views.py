@@ -5,8 +5,8 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, CreateView, DeleteView
 
-from .models import Agencia, Missio
-from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura
+from .models import Agencia, Missio, Nau
+from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura, NauFormLectura, NauForm
 
 
 class Inici(View):
@@ -107,3 +107,50 @@ class EsborrarMissio(DeleteView):
     model = Missio
     template_name = 'spaceManager/missio/esborrar_missio.html'
     success_url = reverse_lazy('spaceManager:llistar_missions')
+
+
+
+''' NAUS '''
+
+class LlistarNaus(View):
+    model = Nau
+    template_name = 'spaceManager/nau/llistat_naus.html'
+
+    def get_queryset(self):
+        return self.model.objects.order_by('id')
+
+    def get_context_data(self, **kwargs):
+        # Paginacio
+        paginator = Paginator(self.get_queryset(), 12)
+        num_pagina = self.request.GET.get('page')
+        pagina = paginator.get_page(num_pagina)
+
+        context = {}
+        context['pagina'] = pagina
+        context['nbar'] = 'naus'
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+
+class DetallNau(UpdateView):
+    model = Nau
+    form_class = NauFormLectura
+    template_name = 'spaceManager/nau/detall_nau.html'
+
+class CrearNau(CreateView):
+    model = Nau
+    form_class = NauForm
+    template_name = 'spaceManager/nau/crear_nau.html'
+    success_url = reverse_lazy('spaceManager:llistar_naus')
+
+class ActualitzarNau(UpdateView):
+    model = Nau
+    form_class = NauForm
+    template_name = 'spaceManager/nau/editar_nau.html'
+    success_url = reverse_lazy('spaceManager:llistar_naus')
+
+class EsborrarNau(DeleteView):
+    model = Nau
+    template_name = 'spaceManager/nau/esborrar_nau.html'
+    success_url = reverse_lazy('spaceManager:llistar_naus')

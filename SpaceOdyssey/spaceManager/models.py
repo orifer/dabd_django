@@ -21,3 +21,13 @@ class Missio(models.Model):
 
     def __str__(self):
         return self.nom
+
+
+class Nau(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    nom = models.CharField(max_length=50)
+    capacitat = models.IntegerField()
+    agencia = models.ForeignKey(Agencia, on_delete=models.RESTRICT)
+
+    def __str__(self):
+        return self.nom
