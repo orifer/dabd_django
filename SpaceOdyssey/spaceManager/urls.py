@@ -2,7 +2,8 @@ from django.urls import path
 
 from .views import Inici, LlistarAgencies, ActualitzarAgencies, CrearAgencies, EsborrarAgencies, DetallAgencia, \
     LlistarMissions, CrearMissio, DetallMissio, EsborrarMissio, ActualitzarMissio, LlistarNaus, DetallNau, CrearNau, \
-    ActualitzarNau, EsborrarNau
+    ActualitzarNau, EsborrarNau, LlistarPlataformes, DetallPlataforma, CrearPlataforma, ActualitzarPlataforma, \
+    EsborrarPlataforma
 
 app_name = "spaceManager"
 
@@ -26,4 +27,10 @@ urlpatterns = [
     path('crear_nau/', CrearNau.as_view(), name='crear_nau'),
     path('editar_nau/<int:pk>', ActualitzarNau.as_view(), name='editar_nau'),
     path('esborrar_nau/<int:pk>', EsborrarNau.as_view(), name='esborrar_nau'),
+
+    path('plataformes/', LlistarPlataformes.as_view(), name='llistar_plataformes'),
+    path('plataformes/<int:pk>', DetallPlataforma.as_view(), name='detall_plataforma'),
+    path('crear_plataforma/', CrearPlataforma.as_view(), name='crear_plataforma'),
+    path('editar_plataforma/<int:pk>', ActualitzarPlataforma.as_view(), name='editar_plataforma'),
+    path('esborrar_plataforma/<int:pk>', EsborrarPlataforma.as_view(), name='esborrar_plataforma'),
 ]

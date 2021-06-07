@@ -5,8 +5,9 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, CreateView, DeleteView
 
-from .models import Agencia, Missio, Nau
-from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura, NauFormLectura, NauForm
+from .models import Agencia, Missio, Nau, Plataforma
+from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura, NauFormLectura, NauForm, \
+    PlataformaForm, PlataformaFormLectura
 
 
 class Inici(View):
@@ -154,3 +155,50 @@ class EsborrarNau(DeleteView):
     model = Nau
     template_name = 'spaceManager/nau/esborrar_nau.html'
     success_url = reverse_lazy('spaceManager:llistar_naus')
+
+
+
+''' PLATAFORMES '''
+
+class LlistarPlataformes(View):
+    model = Plataforma
+    template_name = 'spaceManager/plataforma/llistat_plataformes.html'
+
+    def get_queryset(self):
+        return self.model.objects.order_by('id')
+
+    def get_context_data(self, **kwargs):
+        # Paginacio
+        paginator = Paginator(self.get_queryset(), 12)
+        num_pagina = self.request.GET.get('page')
+        pagina = paginator.get_page(num_pagina)
+
+        context = {}
+        context['pagina'] = pagina
+        context['nbar'] = 'plataformes'
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+
+class DetallPlataforma(UpdateView):
+    model = Plataforma
+    form_class = PlataformaFormLectura
+    template_name = 'spaceManager/plataforma/detall_plataforma.html'
+
+class CrearPlataforma(CreateView):
+    model = Plataforma
+    form_class = PlataformaForm
+    template_name = 'spaceManager/plataforma/crear_plataforma.html'
+    success_url = reverse_lazy('spaceManager:llistar_plataformes')
+
+class ActualitzarPlataforma(UpdateView):
+    model = Plataforma
+    form_class = PlataformaForm
+    template_name = 'spaceManager/plataforma/editar_plataforma.html'
+    success_url = reverse_lazy('spaceManager:llistar_plataformes')
+
+class EsborrarPlataforma(DeleteView):
+    model = Plataforma
+    template_name = 'spaceManager/plataforma/esborrar_plataforma.html'
+    success_url = reverse_lazy('spaceManager:llistar_plataformes')

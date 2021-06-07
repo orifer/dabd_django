@@ -71,7 +71,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/plataformes" class="nav-link {% if nbar == 'plataformes' %} active {% else %} text-secondary {% endif %}">
+                    <a href="{% url 'spaceManager:llistar_plataformes' %}" class="nav-link {% if nbar == 'plataformes' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-pallet fa-2x"></i>
                             <div>Plataformes</div>
