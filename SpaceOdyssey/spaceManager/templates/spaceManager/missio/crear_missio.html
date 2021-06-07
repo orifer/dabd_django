@@ -18,5 +18,16 @@
             </div>
         </form>
 
+
+    {% block extrajs %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".datepicker").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii:ss'
+            });
+        });
+    </script>
+    {% endblock extrajs %}
+
     </div>
 </div>

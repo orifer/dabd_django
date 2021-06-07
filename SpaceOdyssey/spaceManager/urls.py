@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import Inici, LlistarAgencies, ActualitzarAgencies, CrearAgencies, EsborrarAgencies, DetallAgencia, \
-    LlistarMissions
+    LlistarMissions, CrearMissio, DetallMissio, EsborrarMissio, ActualitzarMissio
 
 app_name = "spaceManager"
 
@@ -15,8 +15,8 @@ urlpatterns = [
     path('esborrar_agencia/<int:pk>', EsborrarAgencies.as_view(), name='esborrar_agencia'),
 
     path('missions/', LlistarMissions.as_view(), name='llistar_missions'),
-    path('missions/<int:pk>', DetallAgencia.as_view(), name='detall_missio'),
-    path('crear_missio/', CrearAgencies.as_view(), name='crear_missio'),
-    path('editar_missio/<int:pk>', ActualitzarAgencies.as_view(), name='editar_missio'),
-    path('esborrar_missio/<int:pk>', EsborrarAgencies.as_view(), name='esborrar_missio'),
+    path('missions/<int:pk>', DetallMissio.as_view(), name='detall_missio'),
+    path('crear_missio/', CrearMissio.as_view(), name='crear_missio'),
+    path('editar_missio/<int:pk>', ActualitzarMissio.as_view(), name='editar_missio'),
+    path('esborrar_missio/<int:pk>', EsborrarMissio.as_view(), name='esborrar_missio'),
 ]

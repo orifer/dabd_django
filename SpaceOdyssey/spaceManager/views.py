@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, CreateView, DeleteView
 
 from .models import Agencia, Missio
-from .forms import AgenciaForm, AgenciaFormLectura
+from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura
 
 
 class Inici(View):
@@ -14,6 +14,9 @@ class Inici(View):
         context = {'nbar': 'inici'}
         return render(request, 'spaceManager/inici.html', context)
 
+
+
+''' AGENCIES '''
 
 class LlistarAgencies(View):
     model = Agencia
@@ -36,12 +39,10 @@ class LlistarAgencies(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, self.get_context_data())
 
-
 class DetallAgencia(UpdateView):
     model = Agencia
     form_class = AgenciaFormLectura
     template_name = 'spaceManager/agencia/detall_agencia.html'
-
 
 class CrearAgencies(CreateView):
     model = Agencia
@@ -49,19 +50,20 @@ class CrearAgencies(CreateView):
     template_name = 'spaceManager/agencia/crear_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
 
-
 class ActualitzarAgencies(UpdateView):
     model = Agencia
     form_class = AgenciaForm
     template_name = 'spaceManager/agencia/editar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
 
-
 class EsborrarAgencies(DeleteView):
     model = Agencia
     template_name = 'spaceManager/agencia/esborrar_agencia.html'
     success_url = reverse_lazy('spaceManager:llistar_agencies')
 
+
+
+''' MISSIONS '''
 
 class LlistarMissions(View):
     model = Missio
@@ -83,3 +85,25 @@ class LlistarMissions(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, self.get_context_data())
+
+class DetallMissio(UpdateView):
+    model = Missio
+    form_class = MissioFormLectura
+    template_name = 'spaceManager/agencia/detall_agencia.html'
+
+class CrearMissio(CreateView):
+    model = Missio
+    form_class = MissioForm
+    template_name = 'spaceManager/missio/crear_missio.html'
+    success_url = reverse_lazy('spaceManager:llistar_missions')
+
+class ActualitzarMissio(UpdateView):
+    model = Missio
+    form_class = MissioForm
+    template_name = 'spaceManager/agencia/editar_missio.html'
+    success_url = reverse_lazy('spaceManager:llistar_missions')
+
+class EsborrarMissio(DeleteView):
+    model = Missio
+    template_name = 'spaceManager/agencia/esborrar_missio.html'
+    success_url = reverse_lazy('spaceManager:llistar_missions')

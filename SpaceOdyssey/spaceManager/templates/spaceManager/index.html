@@ -15,7 +15,7 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'spaceManager/favicon.ico' %}"/>
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'spaceManager/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'spaceManager/css/style.css' %}">
 
 </head>
 <body>
@@ -137,6 +137,10 @@
 
 <!-- Jquery Core 3.6.0 Slim -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Date-Time-Picker -->
+<link href="{% static 'spaceManager/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<script src="{% static 'spaceManager/js/bootstrap-datetimepicker.min.js' %}"></script>
 
 
 {% block extrajs %}
