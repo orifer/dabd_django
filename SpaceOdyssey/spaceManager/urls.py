@@ -3,7 +3,7 @@ from django.urls import path
 from .views import Inici, LlistarAgencies, ActualitzarAgencies, CrearAgencies, EsborrarAgencies, DetallAgencia, \
     LlistarMissions, CrearMissio, DetallMissio, EsborrarMissio, ActualitzarMissio, LlistarNaus, DetallNau, CrearNau, \
     ActualitzarNau, EsborrarNau, LlistarPlataformes, DetallPlataforma, CrearPlataforma, ActualitzarPlataforma, \
-    EsborrarPlataforma
+    EsborrarPlataforma, LlistarAstronautes, DetallAstronauta, CrearAstronauta, ActualitzarAstronauta, EsborrarAstronauta
 
 app_name = "spaceManager"
 
@@ -33,4 +33,10 @@ urlpatterns = [
     path('crear_plataforma/', CrearPlataforma.as_view(), name='crear_plataforma'),
     path('editar_plataforma/<int:pk>', ActualitzarPlataforma.as_view(), name='editar_plataforma'),
     path('esborrar_plataforma/<int:pk>', EsborrarPlataforma.as_view(), name='esborrar_plataforma'),
+
+    path('astronautes/', LlistarAstronautes.as_view(), name='llistar_astronautes'),
+    path('astronautes/<int:pk>', DetallAstronauta.as_view(), name='detall_astronauta'),
+    path('crear_astronauta/', CrearAstronauta.as_view(), name='crear_astronauta'),
+    path('editar_astronauta/<int:pk>', ActualitzarAstronauta.as_view(), name='editar_astronauta'),
+    path('esborrar_astronauta/<int:pk>', EsborrarAstronauta.as_view(), name='esborrar_astronauta'),
 ]

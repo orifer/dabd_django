@@ -1,17 +1,19 @@
 <!-- Modal -->
-<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear plataforma</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Esborrar astronauta {{ object }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="{% url 'spaceManager:crear_plataforma' %}" method="POST">
+        <form action="{% url 'spaceManager:esborrar_astronauta' object.id %}" method="POST">
             {% csrf_token %}
+
             <div class="modal-body">
-                {{ form.as_p }}
+                <p>Segur que vols eliminar definitivament aquest astronauta?</p>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Confirmar</button>

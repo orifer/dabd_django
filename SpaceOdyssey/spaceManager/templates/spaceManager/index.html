@@ -17,6 +17,12 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'spaceManager/css/style.css' %}">
 
+    <!-- Date-Time-Picker -->
+    <link href="{% static 'spaceManager/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+
+    <!-- Date-Picker  -->
+    <link href="{% static 'spaceManager/css/datepicker.css' %}" rel="stylesheet">
+
 </head>
 <body>
 
@@ -80,7 +86,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/astronautes" class="nav-link {% if nbar == 'astronautes' %} active {% else %} text-secondary {% endif %}">
+                    <a href="{% url 'spaceManager:llistar_astronautes' %}" class="nav-link {% if nbar == 'astronautes' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-user-astronaut fa-2x"></i>
                             <div>Astronautes</div>
@@ -139,9 +145,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <!-- Date-Time-Picker -->
-<link href="{% static 'spaceManager/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
 <script src="{% static 'spaceManager/js/bootstrap-datetimepicker.min.js' %}"></script>
 
+<!-- Date-Picker  -->
+<script src="{% static 'spaceManager/js/bootstrap-datepicker.js' %}"></script>
 
 {% block extrajs %}
 {% endblock extrajs %}
