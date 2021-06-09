@@ -95,7 +95,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a href="/llancaments" class="nav-link {% if nbar == 'llancaments' %} active {% else %} text-secondary {% endif %}">
+                    <a href="#" class="nav-link {% if nbar == 'llancaments' %} active {% else %} text-secondary {% endif %}">
                         <div class="text-center">
                             <i class="fas fa-plane-departure fa-2x"></i>
                             <div>Llançaments</div>
@@ -104,7 +104,7 @@
                 </li>
 
                 <li class="nav-item dropdown mx-3">
-                     <a href="/plataformes" class="nav-link dropdown-toggle {% if nbar == 'llancaments' %} active {% else %} text-secondary {% endif %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <a class="nav-link dropdown-toggle {% if nbar == 'paisos' %} active {% else %} text-secondary {% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="text-center">
                             <i class="fas fa-cog fa-2x"></i>
                             <div>Opcions</div>
@@ -112,7 +112,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="#">
+                             <a href="{% url 'spaceManager:llistar_paisos' %}" class="dropdown-item" id="navbarDropdown" role="button" aria-expanded="false">
                                 <i class="fas fa-globe-europe mx-2"></i> Països
                             </a>
                         </li>

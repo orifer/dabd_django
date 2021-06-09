@@ -5,15 +5,43 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, CreateView, DeleteView
 
-from .models import Agencia, Missio, Nau, Plataforma, Astronauta
+from .models import Agencia, Missio, Nau, Plataforma, Astronauta, Pais
 from .forms import AgenciaForm, AgenciaFormLectura, MissioForm, MissioFormLectura, NauFormLectura, NauForm, \
     PlataformaForm, PlataformaFormLectura, AstronautaForm, AstronautaFormLectura
 
+
+
+''' INICI '''
 
 class Inici(View):
     def get(self, request, *args, **kwargs):
         context = {'nbar': 'inici'}
         return render(request, 'spaceManager/inici.html', context)
+
+
+
+''' PAïSOS '''
+
+class LlistarPaisos(View):
+    model = Pais
+    template_name = 'spaceManager/pais/llistat_paisos.html'
+
+    def get_queryset(self):
+        return self.model.objects.order_by('nom')
+
+    def get_context_data(self, **kwargs):
+        # Paginacio
+        agencia_paginator = Paginator(self.get_queryset(), 12)
+        num_pagina = self.request.GET.get('page')
+        pagina = agencia_paginator.get_page(num_pagina)
+
+        context = {}
+        context['pagina'] = pagina
+        context['nbar'] = 'paisos'
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
 
 
 

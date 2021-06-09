@@ -3,12 +3,14 @@ from django.urls import path
 from .views import Inici, LlistarAgencies, ActualitzarAgencies, CrearAgencies, EsborrarAgencies, DetallAgencia, \
     LlistarMissions, CrearMissio, DetallMissio, EsborrarMissio, ActualitzarMissio, LlistarNaus, DetallNau, CrearNau, \
     ActualitzarNau, EsborrarNau, LlistarPlataformes, DetallPlataforma, CrearPlataforma, ActualitzarPlataforma, \
-    EsborrarPlataforma, LlistarAstronautes, DetallAstronauta, CrearAstronauta, ActualitzarAstronauta, EsborrarAstronauta
+    EsborrarPlataforma, LlistarAstronautes, DetallAstronauta, CrearAstronauta, ActualitzarAstronauta, \
+    EsborrarAstronauta, LlistarPaisos
 
 app_name = "spaceManager"
 
 urlpatterns = [
     path('', Inici.as_view(), name='index'),
+    path('paisos/', LlistarPaisos.as_view(), name='llistar_paisos'),
 
     path('agencies/', LlistarAgencies.as_view(), name='llistar_agencies'),
     path('agencies/<int:pk>', DetallAgencia.as_view(), name='detall_agencia'),
