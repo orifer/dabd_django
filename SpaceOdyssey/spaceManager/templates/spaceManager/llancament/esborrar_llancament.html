@@ -1,32 +1,24 @@
 <!-- Modal -->
-<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear missio</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Esborrar llancament {{ object }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="{% url 'spaceManager:crear_missio' %}" method="POST">
+        <form action="{% url 'spaceManager:esborrar_llancament' object.id %}" method="POST">
             {% csrf_token %}
+
             <div class="modal-body">
-                {{ form.as_p }}
+                <p>Segur que vols eliminar definitivament aquest llancament?</p>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Confirmar</button>
             </div>
         </form>
-
-        {% block extrajs %}
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".datepicker").datetimepicker({
-                    format: 'yyyy-mm-dd hh:ii:ss'
-                });
-            });
-        </script>
-        {% endblock extrajs %}
 
     </div>
 </div>

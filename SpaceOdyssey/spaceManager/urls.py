@@ -4,7 +4,8 @@ from .views import Inici, LlistarAgencies, ActualitzarAgencies, CrearAgencies, E
     LlistarMissions, CrearMissio, DetallMissio, EsborrarMissio, ActualitzarMissio, LlistarNaus, DetallNau, CrearNau, \
     ActualitzarNau, EsborrarNau, LlistarPlataformes, DetallPlataforma, CrearPlataforma, ActualitzarPlataforma, \
     EsborrarPlataforma, LlistarAstronautes, DetallAstronauta, CrearAstronauta, ActualitzarAstronauta, \
-    EsborrarAstronauta, LlistarPaisos
+    EsborrarAstronauta, LlistarPaisos, LlistarLlancaments, DetallLlancament, CrearLlancament, ActualitzarLlancament, \
+    EsborrarLlancament
 
 app_name = "spaceManager"
 
@@ -41,4 +42,10 @@ urlpatterns = [
     path('crear_astronauta/', CrearAstronauta.as_view(), name='crear_astronauta'),
     path('editar_astronauta/<int:pk>', ActualitzarAstronauta.as_view(), name='editar_astronauta'),
     path('esborrar_astronauta/<int:pk>', EsborrarAstronauta.as_view(), name='esborrar_astronauta'),
+
+    path('llancaments/', LlistarLlancaments.as_view(), name='llistar_llancaments'),
+    path('llancaments/<int:pk>', DetallLlancament.as_view(), name='detall_llancament'),
+    path('crear_llancament/', CrearLlancament.as_view(), name='crear_llancament'),
+    path('editar_llancament/<int:pk>', ActualitzarLlancament.as_view(), name='editar_llancament'),
+    path('esborrar_llancament/<int:pk>', EsborrarLlancament.as_view(), name='esborrar_llancament'),
 ]

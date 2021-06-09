@@ -4,7 +4,7 @@
 from functools import partial
 from django import forms
 from django.forms import ModelForm
-from .models import Agencia, Missio, Nau, Plataforma, Astronauta
+from .models import Agencia, Missio, Nau, Plataforma, Astronauta, Llancament
 
 ''' AGENCIES '''
 
@@ -186,4 +186,40 @@ class AstronautaFormLectura(ModelForm):
 	class Meta:
 		model = Astronauta
 		fields = ['nom', 'cognom', 'naixement', 'genere', 'altura', 'grup_sanguini', 'pais', 'agencia']
+
+
+
+''' LLANÇAMENTS '''
+
+
+class LlancamentForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['missio'].widget.attrs['class'] = 'form-control'
+		self.fields['nau'].widget.attrs['class'] = 'form-control'
+		self.fields['plataforma'].widget.attrs['class'] = 'form-control'
+		self.fields['data_llancament'].widget.attrs['class'] = 'form-control datepicker'
+
+	class Meta:
+		model = Llancament
+		fields = ['missio', 'nau', 'plataforma', 'data_llancament']
+
+class LlancamentFormLectura(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['missio'].widget.attrs['class'] = 'form-control'
+		self.fields['missio'].widget.attrs['readonly'] = 'readonly'
+
+		self.fields['nau'].widget.attrs['class'] = 'form-control'
+		self.fields['nau'].widget.attrs['readonly'] = 'readonly'
+
+		self.fields['plataforma'].widget.attrs['class'] = 'form-control'
+		self.fields['plataforma'].widget.attrs['readonly'] = 'readonly'
+
+		self.fields['data_llancament'].widget.attrs['class'] = 'form-control'
+		self.fields['data_llancament'].widget.attrs['readonly'] = 'readonly'
+
+	class Meta:
+		model = Llancament
+		fields = ['missio', 'nau', 'plataforma', 'data_llancament']
 

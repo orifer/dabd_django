@@ -1,6 +1,7 @@
 # https://docs.djangoproject.com/en/3.2/topics/db/models/
 
 from django.db import models
+from django.db.models import UniqueConstraint
 from django.utils import timezone
 
 
@@ -26,6 +27,8 @@ class Missio(models.Model):
     data_finalitzacio = models.DateTimeField(default=timezone.now)
     agencia = models.ForeignKey(Agencia, on_delete=models.RESTRICT)
 
+    naus = models.ManyToManyField('Nau', through='Llancament')
+
     def __str__(self):
         return self.nom
 
@@ -35,6 +38,8 @@ class Nau(models.Model):
     nom = models.CharField(max_length=50)
     capacitat = models.IntegerField()
     agencia = models.ForeignKey(Agencia, on_delete=models.RESTRICT)
+
+    missions = models.ManyToManyField('Missio', through='Llancament')
 
     def __str__(self):
         return self.nom
@@ -82,3 +87,15 @@ class Astronauta(models.Model):
 
     def __str__(self):
         return str(self.nom) + ' ' + str(self.cognom)
+
+
+class Llancament(models.Model):
+    missio = models.ForeignKey(Missio, on_delete=models.CASCADE)
+    nau = models.ForeignKey(Nau, on_delete=models.CASCADE)
+
+    data_llancament = models.DateTimeField(default=timezone.now)
+    plataforma = models.ForeignKey(Plataforma, on_delete=models.RESTRICT)
+
+
+    def __str__(self):
+        return str(self.nau) + " de la missió " + str(self.missio)
