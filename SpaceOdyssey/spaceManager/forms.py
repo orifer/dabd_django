@@ -224,7 +224,10 @@ class LlancamentFormLectura(ModelForm):
 		self.fields['data_llancament'].widget.attrs['class'] = 'form-control'
 		self.fields['data_llancament'].widget.attrs['readonly'] = 'readonly'
 
+		self.fields['astronautes'].widget.attrs['class'] = 'form-control'
+		self.fields['astronautes'].widget.attrs['readonly'] = 'readonly'
+
 	class Meta:
 		model = Llancament
-		fields = ['missio', 'nau', 'plataforma', 'data_llancament']
+		fields = ['missio', 'nau', 'plataforma', 'data_llancament', 'astronautes']
 
