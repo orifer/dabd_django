@@ -1,5 +1,4 @@
 # https://docs.djangoproject.com/en/3.2/topics/db/queries/
-
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
@@ -70,6 +69,17 @@ class DetallAgencia(UpdateView):
     model = Agencia
     form_class = AgenciaFormLectura
     template_name = 'spaceManager/agencia/detall_agencia.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        astronautes_queryset = Astronauta.objects.filter(agencia_id=self.object.id)
+        print('QUERY =', astronautes_queryset.query)
+        context['astronautes'] = astronautes_queryset
+
+        return context
+
+
 
 class CrearAgencies(CreateView):
     model = Agencia

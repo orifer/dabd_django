@@ -200,9 +200,14 @@ class LlancamentForm(ModelForm):
 		self.fields['plataforma'].widget.attrs['class'] = 'form-control'
 		self.fields['data_llancament'].widget.attrs['class'] = 'form-control datepicker'
 
+		self.fields['astronautes'] = forms.ModelMultipleChoiceField(
+			queryset=Astronauta.objects.all(),
+			widget=forms.CheckboxSelectMultiple
+		)
+
 	class Meta:
 		model = Llancament
-		fields = ['missio', 'nau', 'plataforma', 'data_llancament']
+		fields = ['missio', 'nau', 'plataforma', 'data_llancament', 'astronautes']
 
 class LlancamentFormLectura(ModelForm):
 	def __init__(self, *args, **kwargs):

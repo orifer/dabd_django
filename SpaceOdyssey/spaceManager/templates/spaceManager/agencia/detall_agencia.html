@@ -8,6 +8,15 @@
 
         <div class="modal-body">
             {{ form.as_p }}
+
+            {% if astronautes %}
+                <h6 class="mt-3">Llistat d'astronautes</h6>
+                <ul class="list-group">
+                    {% for astronauta in astronautes %}
+                        <li class="list-group-item">{{ astronauta }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
 
         <div class="modal-footer">
