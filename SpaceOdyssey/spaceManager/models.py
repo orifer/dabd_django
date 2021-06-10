@@ -33,7 +33,7 @@ class Missio(models.Model):
 
 
 class Nau(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True, db_index=True)
     nom = models.CharField(max_length=50)
     capacitat = models.IntegerField()
     agencia = models.ForeignKey(Agencia, on_delete=models.CASCADE)
@@ -74,7 +74,7 @@ BLOOD_CHOICES = [
 ]
 
 class Astronauta(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True, db_index=True)
     nom = models.CharField(max_length=50)
     cognom = models.CharField(max_length=50)
     naixement = models.DateField(default=timezone.now)
@@ -83,6 +83,9 @@ class Astronauta(models.Model):
     grup_sanguini = models.CharField(max_length=3, choices=BLOOD_CHOICES)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
     agencia = models.ForeignKey(Agencia, on_delete=models.CASCADE)
+
+    # class Meta:
+    #     indexes = [models.Index(fields=['id', ]), ]
 
     def __str__(self):
         return str(self.nom) + ' ' + str(self.cognom)
