@@ -1,7 +1,6 @@
 # https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/
 # https://docs.djangoproject.com/en/3.2/ref/forms/widgets/
 
-from functools import partial
 from django import forms
 from django.forms import ModelForm
 from .models import Agencia, Missio, Nau, Plataforma, Astronauta, Llancament

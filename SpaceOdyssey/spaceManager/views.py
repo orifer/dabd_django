@@ -28,7 +28,7 @@ class LlistarPaisos(View):
 
     def get_context_data(self, **kwargs):
         # Paginacio
-        agencia_paginator = Paginator(self.get_queryset(), 12)
+        agencia_paginator = Paginator(self.get_queryset(), 17)
         num_pagina = self.request.GET.get('page')
         pagina = agencia_paginator.get_page(num_pagina)
 

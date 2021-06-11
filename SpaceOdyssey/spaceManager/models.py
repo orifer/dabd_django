@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Pais(models.Model):
-    nom = models.CharField(primary_key=True, max_length=50)
+    nom = models.CharField(primary_key=True, max_length=100)
 
     def __str__(self):
         return self.nom
@@ -33,7 +33,7 @@ class Missio(models.Model):
 
 
 class Nau(models.Model):
-    id = models.BigAutoField(primary_key=True, db_index=True)
+    id = models.CharField(max_length=50, primary_key=True, db_index=True)
     nom = models.CharField(max_length=50)
     capacitat = models.IntegerField()
     agencia = models.ForeignKey(Agencia, on_delete=models.CASCADE)
